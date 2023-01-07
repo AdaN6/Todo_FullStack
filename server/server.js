@@ -4,7 +4,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const routes = require("./routes");
 
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 8080;
 
 const middlewares = [
   bodyParser.urlencoded({ extended: false }),
@@ -15,15 +15,11 @@ app.use(middlewares);
 
 app.use("/", routes);
 
-
 app.use((req, res, next) => res.status(404).send("Sorry can't find that!"));
 
 app.use((err, req, res) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
 });
-
-
-
 
 app.listen(8080, () => console.log(`App running at ${port}`));
